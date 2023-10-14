@@ -3,14 +3,40 @@
 import AddExercise from "./AddExercise";
 import DateSelector from "./DateSelector";
 import DateTitle from "./DateTitle";
+import Exercises from "./Exercises";
+import { useState } from "react";
 
 const DayLog = ({date}) => {
+
+    const [exercises, setExercises] = useState([
+        {
+            name: "Barbell Row",
+            weight: 65,
+            reps: 12
+        },
+        {
+            name: "Barbell Row",
+            weight: 65,
+            reps: 12
+        },
+        {
+            name: "Barbell Row",
+            weight: 55,
+            reps: 8
+        },
+      ]);
+
+      const addExercise = (exercise) => {
+        setExercises([...exercises, exercise]);
+      }
+
     return(
         <>
-            <DateTitle/>
+            <DateTitle date={date}/>
             <DateSelector/>
             <p></p>
-            <AddExercise/>
+            <AddExercise onAdd={addExercise}/>
+            <Exercises exercises={exercises}/>
         </>
     )
 }

@@ -4,7 +4,7 @@
 
 const DateSelector = () => {
     return(
-        <button>Date</button>
+        <button>Choose Date</button>
     )
 }
 
