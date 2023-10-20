@@ -8,23 +8,7 @@ import { useState } from "react";
 
 const DayLog = ({date}) => {
 
-    const [exercises, setExercises] = useState([
-        {
-            name: "Barbell Row",
-            weight: 65,
-            reps: 12
-        },
-        {
-            name: "Barbell Row",
-            weight: 65,
-            reps: 12
-        },
-        {
-            name: "Barbell Row",
-            weight: 55,
-            reps: 8
-        },
-      ]);
+    const [exercises, setExercises] = useState([]);
 
       const addExercise = (exercise) => {
         setExercises([...exercises, exercise]);

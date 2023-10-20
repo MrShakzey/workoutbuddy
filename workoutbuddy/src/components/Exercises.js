@@ -3,11 +3,32 @@
 
 import Exercise from "./Exercise";
 
-const Exercises = ({exercises}) => {
-    return(
-        exercises.map((exercise) => (
-            <Exercise name={exercise.name} weight={exercise.weight} reps={exercise.reps}/>
-        ))       
+const Exercises = ({ exercises }) => {
+
+    var results = exercises.reduce(function (r, a) {
+        r[a.name] = r[a.name] || [];
+        r[a.name].push(a);
+        return r;
+    }, Object.create(null));
+
+    var objEntries = Object.entries(results);
+    console.log(objEntries);
+
+    return (
+        Object.entries(results).map(([exerciseName, sets]) => {
+            return (
+                <div>
+                    <h3>{exerciseName}</h3>
+                    <div>
+                        {
+                            sets.map(set => (
+                                <Exercise name={exerciseName} weight={set.weight} reps={set.reps} />
+                            ))
+                        }
+                    </div>
+                </div>
+            )
+        })
     )
 }
 

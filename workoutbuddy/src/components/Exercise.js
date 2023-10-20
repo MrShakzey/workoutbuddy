@@ -5,11 +5,10 @@ import Set from "./Set";
 
 const Exercise = ({name, weight, reps}) => {
     return(
-        <>
-        <h3>{name}</h3>
+        <div >
         <button>Delete</button>
         <Set weight={weight} reps={reps}/>
-        </>
+        </div>
     )
 }
 
