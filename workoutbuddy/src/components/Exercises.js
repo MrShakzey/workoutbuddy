@@ -5,30 +5,22 @@ import Exercise from "./Exercise";
 
 const Exercises = ({ exercises }) => {
 
-    var results = exercises.reduce(function (r, a) {
-        r[a.name] = r[a.name] || [];
-        r[a.name].push(a);
-        return r;
-    }, Object.create(null));
-
-    var objEntries = Object.entries(results);
-    console.log(objEntries);
 
     return (
-        Object.entries(results).map(([exerciseName, sets]) => {
-            return (
+        <div className="container">
+            {Object.values(exercises).map((exercise) => (
                 <div>
-                    <h3>{exerciseName}</h3>
+                    <h3>{exercise.name}</h3>
                     <div>
                         {
-                            sets.map(set => (
-                                <Exercise name={exerciseName} weight={set.weight} reps={set.reps} />
+                            exercise.sets.map(set => (
+                                <Exercise name={exercise.name} weight={set.weight} reps={set.reps} />
                             ))
                         }
                     </div>
                 </div>
-            )
-        })
+            ))}
+        </div>
     )
 }
 

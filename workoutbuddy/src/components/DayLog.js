@@ -5,24 +5,38 @@ import DateSelector from "./DateSelector";
 import DateTitle from "./DateTitle";
 import Exercises from "./Exercises";
 import { useState } from "react";
+import { useEffect } from "react";
 
-const DayLog = ({date}) => {
+const API_URL = "https://localhost:7074/api/Workout/2023-10-22";
 
-    const [exercises, setExercises] = useState([]);
+const DayLog = ({ date }) => {
 
-      const addExercise = (exercise) => {
-        setExercises([...exercises, exercise]);
-      }
+  const getWorkouts = async () => {
+    await fetch(API_URL)
+      .then(response => response.json())
+      .then(data => setExercises(data));
+  }
 
-    return(
-        <>
-            <DateTitle date={date}/>
-            <DateSelector/>
-            <p></p>
-            <AddExercise onAdd={addExercise}/>
-            <Exercises exercises={exercises}/>
-        </>
-    )
+  const [exercises, setExercises] = useState([]);
+
+  const addExercise = (exercise) => {
+    // instead of adding directly, add to the database and then pull it. so that its in the right form
+    setExercises([...exercises, exercise]);
+  }
+
+  useEffect(() => {
+    getWorkouts();
+  }, []);
+
+  return (
+    <>
+      <DateTitle date={date} />
+      <DateSelector />
+      <p></p>
+      <AddExercise onAdd={addExercise} />
+      <Exercises exercises={exercises} />
+    </>
+  )
 }
 
 export default DayLog;
