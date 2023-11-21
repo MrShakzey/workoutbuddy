@@ -6,22 +6,30 @@ import DateTitle from "./DateTitle";
 import Exercises from "./Exercises";
 import { useState } from "react";
 import { useEffect } from "react";
+import moment from 'moment';
 
-const API_URL = "https://localhost:7074/api/Workout/2023-10-22";
+
+const API_URL = "https://localhost:7074/api/Workout/";
 
 const DayLog = ({ date }) => {
 
   const getWorkouts = async () => {
-    await fetch(API_URL)
+    await fetch(`${API_URL}${moment(date).format('YYYY-MM-DD')}`)
       .then(response => response.json())
       .then(data => setExercises(data));
   }
 
   const [exercises, setExercises] = useState([]);
 
-  const addExercise = (exercise) => {
-    // instead of adding directly, add to the database and then pull it. so that its in the right form
-    setExercises([...exercises, exercise]);
+  const addExercise = async (exercise) => {  
+
+    await fetch(`${API_URL}AddSetToWorkout?date=${moment(date).format('YYYY-MM-DD')}`, {
+      method : 'POST',
+      headers : {"Content-Type" : "application/json"},
+      body : JSON.stringify(exercise)
+    }).then(() => {
+      getWorkouts();
+    })
   }
 
   useEffect(() => {

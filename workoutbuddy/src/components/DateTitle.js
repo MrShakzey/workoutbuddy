@@ -3,7 +3,7 @@
 const DateTitle = ({date}) => {
     return(
         <div>
-            <h2>{date}</h2>
+            <h2>{date.toDateString()}</h2>
         </div>
     )
 }
