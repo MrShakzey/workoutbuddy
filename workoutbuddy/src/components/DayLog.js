@@ -11,18 +11,22 @@ import moment from 'moment';
 
 const API_URL = "https://localhost:7074/api/Workout/";
 
-const DayLog = ({ date }) => {
+const DayLog = () => {
 
   const getWorkouts = async () => {
-    await fetch(`${API_URL}${moment(date).format('YYYY-MM-DD')}`)
-      .then(response => response.json())
+     await fetch(`${API_URL}${moment(date).format('YYYY-MM-DD')}`)
+      .then((response) => response.json())
       .then(data => setExercises(data));
   }
 
+  const [date, setDate] = useState(new Date());
   const [exercises, setExercises] = useState([]);
 
-  const addExercise = async (exercise) => {  
+  const changeDate = async (newDate) => {
+    setDate(newDate);
+  }
 
+  const addExercise = async (exercise) => {  
     await fetch(`${API_URL}AddSetToWorkout?date=${moment(date).format('YYYY-MM-DD')}`, {
       method : 'POST',
       headers : {"Content-Type" : "application/json"},
@@ -34,15 +38,15 @@ const DayLog = ({ date }) => {
 
   useEffect(() => {
     getWorkouts();
-  }, []);
+  }, [date])
 
   return (
     <>
       <DateTitle date={date} />
-      <DateSelector />
+      <DateSelector onChangeDate={changeDate}/>
       <p></p>
       <AddExercise onAdd={addExercise} />
-      <Exercises exercises={exercises} />
+      {exercises && <Exercises exercises={exercises} />}
     </>
   )
 }
