@@ -5,16 +5,15 @@ import Exercise from "./Exercise";
 
 const Exercises = ({ exercises }) => {
 
-
     return (
         <div className="container">
             {Object.values(exercises).map((exercise) => (
-                <div>
+                <div className="task">
                     <h3>{exercise.name}</h3>
                     <div>
                         {
                             exercise.sets.map(set => (
-                                <Exercise name={exercise.name} weight={set.weight} reps={set.reps} />
+                                <Exercise weight={set.weight} reps={set.reps} />
                             ))
                         }
                     </div>

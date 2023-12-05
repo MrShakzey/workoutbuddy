@@ -17,13 +17,13 @@ const DateSelector = ({onChangeDate}) => {
       }, [selectedDate]);
 
     return (
-        <div>
-            <DatePicker selected={selectedDate}
+            <DatePicker wrapperClassName="datePicker"
+                        className="datePicker"
+                        selected={selectedDate}
                         dateFormat={'yyyy-MM-dd'}
                         onChange={newDate => {
-                            setSelectedDate(newDate);}}>
-            </DatePicker>                
-        </div>
+                        setSelectedDate(newDate);}}>
+            </DatePicker>
     )
 }
 

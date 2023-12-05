@@ -2,7 +2,6 @@
 
 import AddExercise from "./AddExercise";
 import DateSelector from "./DateSelector";
-import DateTitle from "./DateTitle";
 import Exercises from "./Exercises";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -42,9 +41,8 @@ const DayLog = () => {
 
   return (
     <>
-      <DateTitle date={date} />
+      <h2 className="header">{date.toDateString()}</h2>
       <DateSelector onChangeDate={changeDate}/>
-      <p></p>
       <AddExercise onAdd={addExercise} />
       {exercises && <Exercises exercises={exercises} />}
     </>

@@ -2,8 +2,8 @@
 // clicking add will post it to the database, at the same time a get will happen to update the front end
 import { useState } from "react";
 
-const AddExercise = ({onAdd}) => {
-    
+const AddExercise = ({ onAdd }) => {
+
     const [name, setName] = useState('');
     const [weight, setWeight] = useState('');
     const [reps, setReps] = useState('');
@@ -15,7 +15,7 @@ const AddExercise = ({onAdd}) => {
             alert('Please enter a task!')
         }
 
-        onAdd({name, weight, reps});
+        onAdd({ name, weight, reps });
 
         setName('');
         setWeight('');
@@ -25,10 +25,18 @@ const AddExercise = ({onAdd}) => {
     return (
         <>
             <form onSubmit={onSubmit}>
-                <input type="text" placeholder="Exercise name" value={name} onChange={(e) => setName(e.target.value)}/>
-                <input type="number" placeholder="Weight (kg)" min="0" value={weight} onChange={(e) => setWeight(e.target.value)}/>
-                <input type="number" placeholder="Reps" min="1" value={reps} onChange={(e) => setReps(e.target.value)}/>
-                <button type='submit'>Add</button>
+                <div className='form-control'>
+                    <input type="text" placeholder="Exercise name" value={name} onChange={(e) => setName(e.target.value)} />
+                </div>
+                <div className='form-control'>
+                    <input type="number" className='form-control' placeholder="Weight (kg)" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} />
+                </div>
+                <div className='form-control'>
+                    <input type="number" className='form-control' placeholder="Reps" min="1" value={reps} onChange={(e) => setReps(e.target.value)} />
+                </div>
+                <div className="btn-block-div">
+                    <button type='submit' className="btn btn-block">Add</button>
+                </div>
             </form>
         </>
     )

@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-import './App.css';
 import DayLog from './components/DayLog';
 
 function App() {
