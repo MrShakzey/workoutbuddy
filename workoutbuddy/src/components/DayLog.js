@@ -7,13 +7,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import moment from 'moment';
 
-
-const API_URL = "https://localhost:7074/api/Workout/";
+const API_URL = "https://localhost:7074/api/";
 
 const DayLog = () => {
 
   const getWorkouts = async () => {
-     await fetch(`${API_URL}${moment(date).format('YYYY-MM-DD')}`)
+     await fetch(`${API_URL}Workout/${moment(date).format('YYYY-MM-DD')}`)
       .then((response) => response.json())
       .then(data => setExercises(data));
   }
@@ -26,10 +25,20 @@ const DayLog = () => {
   }
 
   const addExercise = async (exercise) => {  
-    await fetch(`${API_URL}AddSetToWorkout?date=${moment(date).format('YYYY-MM-DD')}`, {
+    await fetch(`${API_URL}Workout/AddSetToWorkout?date=${moment(date).format('YYYY-MM-DD')}`, {
       method : 'POST',
       headers : {"Content-Type" : "application/json"},
       body : JSON.stringify(exercise)
+    }).then(() => {
+      getWorkouts();
+    })
+  }
+
+  const deleteExercise = async (setId) => {
+    await fetch(`${API_URL}Set?setId=${setId}`, {
+      method : 'DELETE',
+      headers : {"Content-Type" : "application/json"},
+      body : JSON.stringify(setId)
     }).then(() => {
       getWorkouts();
     })
@@ -44,7 +53,7 @@ const DayLog = () => {
       <h2 className="header">{date.toDateString()}</h2>
       <DateSelector onChangeDate={changeDate}/>
       <AddExercise onAdd={addExercise} />
-      {exercises && <Exercises exercises={exercises} />}
+      {exercises && <Exercises exercises={exercises} deleteExercise={deleteExercise} />}
     </>
   )
 }
