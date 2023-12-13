@@ -11,15 +11,16 @@ const AddExercise = ({ onAdd }) => {
     const onSubmit = (e) => {
         e.preventDefault()
 
-        if (!name) {
-            alert('Please enter a task!')
+        if (!name || !weight || !reps) {
+            alert('Please complete the form!')
         }
-
-        onAdd({ name, weight, reps });
-
-        setName('');
-        setWeight('');
-        setReps('');
+        else{   
+            onAdd({ name, weight, reps });
+            
+            setName('');
+            setWeight('');
+            setReps('');
+        }
     }
 
     return (

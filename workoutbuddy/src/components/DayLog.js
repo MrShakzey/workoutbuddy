@@ -35,10 +35,19 @@ const DayLog = () => {
   }
 
   const deleteExercise = async (setId) => {
-    await fetch(`${API_URL}Set?setId=${setId}`, {
+    await fetch(`${API_URL}Set/DeleteSet?setId=${setId}`, {
       method : 'DELETE',
       headers : {"Content-Type" : "application/json"},
-      body : JSON.stringify(setId)
+    }).then(() => {
+      getWorkouts();
+    })
+  }
+
+  const updateExercise = async (exerciseUpdate) => {
+    await fetch(`${API_URL}Set/UpdateSet`, {
+      method : 'PUT',
+      headers : {"Content-Type" : "application/json"},
+      body : JSON.stringify(exerciseUpdate)
     }).then(() => {
       getWorkouts();
     })
@@ -53,7 +62,9 @@ const DayLog = () => {
       <h2 className="header">{date.toDateString()}</h2>
       <DateSelector onChangeDate={changeDate}/>
       <AddExercise onAdd={addExercise} />
-      {exercises && <Exercises exercises={exercises} deleteExercise={deleteExercise} />}
+      {exercises && <Exercises exercises={exercises} 
+                               deleteExercise={deleteExercise}
+                               updateExercise={updateExercise} />}
     </>
   )
 }

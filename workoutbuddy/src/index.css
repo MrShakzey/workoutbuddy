@@ -54,11 +54,15 @@ body {
   font-family: inherit;
 }
 
+.btn:disabled {
+  background: grey;
+}
+
 .btn:focus {
   outline: none;
 }
 
-.btn:active {
+.btn:active:enabled {
   transform: scale(0.98);
 }
 
@@ -81,6 +85,7 @@ body {
 
 p {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .task {
@@ -132,6 +137,16 @@ p {
 .form-control-check input {
   flex: 2;
   height: 20px;
+}
+
+.form-edit {
+  display: inline-block;
+  width: 25%;
+  align-items: center;
+  margin-right: 5px;
+  margin-top: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
 }
 
 footer {

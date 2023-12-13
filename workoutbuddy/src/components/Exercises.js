@@ -3,7 +3,7 @@
 
 import Exercise from "./Exercise";
 
-const Exercises = ({ exercises, deleteExercise }) => {
+const Exercises = ({ exercises, deleteExercise, updateExercise }) => {
 
     return (
         <div className="container">
@@ -14,9 +14,10 @@ const Exercises = ({ exercises, deleteExercise }) => {
                         {
                             exercise.sets.map(set => (
                                 <Exercise id={set.id} 
-                                          weight={set.weight} 
-                                          reps={set.reps} 
-                                          onDelete={deleteExercise} />
+                                          originalWeight={set.weight} 
+                                          originalReps={set.reps} 
+                                          onDelete={deleteExercise}
+                                          onUpdate={updateExercise} />
                             ))
                         }
                     </div>
