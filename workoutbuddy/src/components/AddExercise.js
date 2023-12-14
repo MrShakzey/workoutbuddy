@@ -1,10 +1,11 @@
 // choose an exercise from the drop down, type in the weight in kg, type in the reps for the set, hit add
 // clicking add will post it to the database, at the same time a get will happen to update the front end
 import { useState } from "react";
+import CreatableSelect from 'react-select/creatable'
 
-const AddExercise = ({ onAdd }) => {
+const AddExercise = ({ onAdd, exerciseList }) => {
 
-    const [name, setName] = useState('');
+    const [name, setName] = useState(null);
     const [weight, setWeight] = useState('');
     const [reps, setReps] = useState('');
 
@@ -14,10 +15,10 @@ const AddExercise = ({ onAdd }) => {
         if (!name || !weight || !reps) {
             alert('Please complete the form!')
         }
-        else{   
-            onAdd({ name, weight, reps });
+        else{
+            onAdd({ name: name.value, weight, reps });
             
-            setName('');
+            setName(null);
             setWeight('');
             setReps('');
         }
@@ -26,8 +27,8 @@ const AddExercise = ({ onAdd }) => {
     return (
         <>
             <form onSubmit={onSubmit}>
-                <div className='form-control'>
-                    <input type="text" placeholder="Exercise name" value={name} onChange={(e) => setName(e.target.value)} />
+                <div className="creatableDiv">
+                    <CreatableSelect className="creatable" placeholder='Exercise name' options={exerciseList} value={name} onChange={(e) => setName(e)}/>
                 </div>
                 <div className='form-control'>
                     <input type="number" className='form-control' placeholder="Weight (kg)" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} />

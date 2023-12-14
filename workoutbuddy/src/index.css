@@ -108,6 +108,15 @@ p {
   margin-bottom: 40px;
 }
 
+.creatable {
+  margin: 30px 30px 16px 35px;
+  width: 100%;
+}
+
+.creatableDiv {
+  padding-right: 60px;
+}
+
 .form-control {
   margin: 10px 30px;
 }
@@ -121,7 +130,12 @@ p {
   height: 40px;
   margin: 5px;
   padding: 3px 7px;
-  font-size: 17px;
+  font-size: 15px;
+  font-family: inherit;
+  border-radius: 4px;
+  border-style: solid;
+  border-color: #cccccc;
+  border-width: 1px;
 }
 
 .form-control-check {

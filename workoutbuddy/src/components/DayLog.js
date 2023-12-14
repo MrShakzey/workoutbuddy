@@ -17,8 +17,19 @@ const DayLog = () => {
       .then(data => setExercises(data));
   }
 
+  const getExerciseList = async () => {
+    await fetch(`${API_URL}Exercise`)
+      .then((response) => response.json())
+      .then(data => 
+        {
+          const result = data.map(exercise => ({value: exercise.name, label: exercise.name}));
+          setExerciseList(result)
+        });
+  }
+
   const [date, setDate] = useState(new Date());
   const [exercises, setExercises] = useState([]);
+  const [exerciseList, setExerciseList] = useState([]);
 
   const changeDate = async (newDate) => {
     setDate(newDate);
@@ -31,6 +42,7 @@ const DayLog = () => {
       body : JSON.stringify(exercise)
     }).then(() => {
       getWorkouts();
+      getExerciseList();
     })
   }
 
@@ -40,6 +52,7 @@ const DayLog = () => {
       headers : {"Content-Type" : "application/json"},
     }).then(() => {
       getWorkouts();
+      getExerciseList();
     })
   }
 
@@ -50,18 +63,20 @@ const DayLog = () => {
       body : JSON.stringify(exerciseUpdate)
     }).then(() => {
       getWorkouts();
+      getExerciseList();
     })
   }
 
   useEffect(() => {
     getWorkouts();
+    getExerciseList();
   }, [date])
 
   return (
     <>
       <h2 className="header">{date.toDateString()}</h2>
       <DateSelector onChangeDate={changeDate}/>
-      <AddExercise onAdd={addExercise} />
+      <AddExercise onAdd={addExercise} exerciseList={exerciseList} />
       {exercises && <Exercises exercises={exercises} 
                                deleteExercise={deleteExercise}
                                updateExercise={updateExercise} />}
