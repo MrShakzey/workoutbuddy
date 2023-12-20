@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/workoutbuddy/static/css/main.8b0b0b52.css",
+    "main.js": "/workoutbuddy/static/js/main.a3356a37.js",
+    "static/js/787.86fcd680.chunk.js": "/workoutbuddy/static/js/787.86fcd680.chunk.js",
+    "index.html": "/workoutbuddy/index.html",
+    "main.8b0b0b52.css.map": "/workoutbuddy/static/css/main.8b0b0b52.css.map",
+    "main.a3356a37.js.map": "/workoutbuddy/static/js/main.a3356a37.js.map",
+    "787.86fcd680.chunk.js.map": "/workoutbuddy/static/js/787.86fcd680.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8b0b0b52.css",
+    "static/js/main.a3356a37.js"
+  ]
+}
