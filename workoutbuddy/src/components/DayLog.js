@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import moment from 'moment';
 
-const API_URL = "https://localhost:7074/api/";
+const API_URL = "https://workoutbuddyapi.azurewebsites.net/api/";
 
 const DayLog = () => {
 
